@@ -23,20 +23,21 @@ export default function Auth({ setToken, setUser, API_URL }) {
     setError('');
     setLoading(true);
 
-    const endpoint = isLogin ? '/auth/login' : '/auth/register';
-    const payload = isLogin 
-      ? { usernameOrEmail: email, password } 
+    const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
+    const payload = isLogin
+      ? { usernameOrEmail: email, password }
       : { username, email, password };
 
     try {
-      const res = await fetch(`${API_URL}${endpoint}`, {
+      const baseUrl = API_URL || import.meta.env.VITE_API_URL || 'https://d-english-backend.onrender.com';
+      const res = await fetch(`${baseUrl}${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
 
       const data = await res.json();
-      
+
       if (res.ok) {
         setToken(data.token);
         setUser(data.user);
@@ -70,7 +71,7 @@ export default function Auth({ setToken, setUser, API_URL }) {
       }} />
 
       <div style={{ display: 'flex', width: '100%', maxWidth: '900px', gap: '0', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 40px 80px rgba(0,0,0,0.5)' }}>
-        
+
         {/* Left Panel — Branding */}
         <div style={{
           flex: 1, display: 'none',
@@ -116,7 +117,7 @@ export default function Auth({ setToken, setUser, API_URL }) {
         {/* Right Panel — Form */}
         <div className="glass-panel auth-card" style={{ borderRadius: '0', maxWidth: '440px', width: '100%', border: 'none' }}>
           {loading && <div className="scanner-line"></div>}
-          
+
           <div style={{ display: 'inline-flex', background: 'var(--primary-gradient)', padding: '12px', borderRadius: '14px', color: 'white', marginBottom: '20px', boxShadow: '0 0 20px rgba(99,102,241,0.3)' }}>
             <Sparkles size={28} />
           </div>
@@ -202,9 +203,9 @@ export default function Auth({ setToken, setUser, API_URL }) {
               </div>
             </div>
 
-            <button 
-              type="submit" 
-              className="glow-btn" 
+            <button
+              type="submit"
+              className="glow-btn"
               style={{ width: '100%', justifyContent: 'center', padding: '14px', fontSize: '15px' }}
               disabled={loading}
             >
