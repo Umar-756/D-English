@@ -13,7 +13,7 @@ import Shop from './components/Shop';
 import Profile, { getAvatarEmoji } from './components/Profile';
 import VocabBuilder from './components/VocabBuilder';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = 'https://d-english-backend.onrender.com';
 
 export default function App() {
   const [token, setToken] = useState(localStorage.getItem('token') || '');
