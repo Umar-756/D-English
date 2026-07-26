@@ -25,12 +25,12 @@ export default function Auth({ setToken, setUser, API_URL }) {
 
     const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
     const payload = isLogin
-      ? { usernameOrEmail: email, password }
+      ? { usernameOrEmail: email || username, password }
       : { username, email, password };
 
     try {
       const baseUrl = 'https://d-english-backend.onrender.com';
-    const res = await fetch(baseUrl + endpoint, {
+      const res = await fetch(baseUrl + endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
