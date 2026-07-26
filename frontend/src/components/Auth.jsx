@@ -29,7 +29,7 @@ export default function Auth({ setToken, setUser, API_URL }) {
       : { username, email, password };
 
     try {
-      const baseUrl = API_URL || import.meta.env.VITE_API_URL || 'https://d-english-backend.onrender.com';
+      const baseUrl = 'https://d-english-backend.onrender.com';;
       const res = await fetch(`${baseUrl}${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
