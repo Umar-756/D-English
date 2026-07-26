@@ -18,22 +18,29 @@ export default function Auth({ setToken, setUser, API_URL }) {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
 
     const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
+
+   
     const payload = isLogin
-      ? { usernameOrEmail: email || username, password }
+      ? { 
+          username: username || email, 
+          email: email || username, 
+          usernameOrEmail: username || email, 
+          password 
+        }
       : { username, email, password };
 
     try {
-    const res = await fetch(`${API_URL}${endpoint}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
+      const res = await fetch(`${API_URL}${endpoint}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
 
       const data = await res.json();
 
@@ -41,11 +48,11 @@ export default function Auth({ setToken, setUser, API_URL }) {
         setToken(data.token);
         setUser(data.user);
       } else {
-        setError(data.error || 'Something went wrong');
+        setError(data.error || data.message || 'Xatolik yuz berdi');
       }
     } catch (err) {
       console.error(err);
-      setError('Connection failed. Is the backend server running?');
+      setError('Serverga bog‘lanishda xatolik!');
     } finally {
       setLoading(false);
     }
