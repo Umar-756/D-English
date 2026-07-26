@@ -29,12 +29,11 @@ export default function Auth({ setToken, setUser, API_URL }) {
       : { username, email, password };
 
     try {
-      const baseUrl = 'https://d-english-backend.onrender.com';
-      const res = await fetch(baseUrl + endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
+    const res = await fetch(`${API_URL}${endpoint}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
 
       const data = await res.json();
 
