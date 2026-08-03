@@ -267,6 +267,7 @@ async function main() {
     await prisma.question.createMany({ data: generatedQuestions.slice(i, i + batchSize) });
   }
 
+  /*
   console.log('Seeding Mock Competitors...');
   const mockUsers = [
     { username: 'alex_ielts_9', email: 'alex@example.com', passwordHash: '$2a$10$Wp1B/kL2D2gI6zsz5d/w6.XkX0XWv19x7Q81k8G1P6kH5D2I8D5yO', xp: 2400, coins: 350, level: 5, streak: 15 },
@@ -305,6 +306,7 @@ async function main() {
       await prisma.userProgress.create({ data: prog });
     }
   }
+  */
 
   console.log('Database seeding successfully finished!');
 }

@@ -9,8 +9,7 @@ const FEATURES = [
   { icon: '🎨', text: 'Unlockable Premium Themes' },
 ];
 
-export default function Auth({ setToken, setUser }) {
-  const API_URL = 'https://d-english-backend.onrender.com';
+export default function Auth({ setToken, setUser, API_URL }) {
   const [isLogin, setIsLogin] = useState(true);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -24,7 +23,7 @@ const handleSubmit = async (e) => {
     setError('');
     setLoading(true);
 
-    const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
+    const endpoint = isLogin ? '/auth/login' : '/auth/register';
 
    
     const payload = isLogin

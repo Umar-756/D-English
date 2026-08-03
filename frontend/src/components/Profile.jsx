@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { Download, Check, User, Award, Star, Zap } from 'lucide-react';
 
 // 12 ta SVG avatar emoji (emoji-tabanlı, hech qanday rasm kerak emas)
@@ -17,6 +17,7 @@ const AVATARS = [
   { id: 'avatar_12', emoji: '🏆',   label: 'Champion' },
 ];
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function getAvatarEmoji(avatarId) {
   return AVATARS.find(a => a.id === avatarId)?.emoji || '🧑‍💻';
 }
